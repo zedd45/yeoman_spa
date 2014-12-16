@@ -15,7 +15,11 @@ class SamsClubSpa.Routers.Github extends Backbone.Router
         SamsClubSpa.contentDiv.empty().html new SamsClubSpa.Views.Landing().render()
 
     searchResutlsPage: (query) ->
-        # SamsClubSpa.contentDiv.empty().html news SamsClubSpa.Views.SRP().render()
+        view = new SamsClubSpa.Views.SearchResults
+            collection: new SamsClubSpa.Collections.Users()
+            query: query
+
+        SamsClubSpa.contentDiv.empty().html view.el
 
 
     userDetails: (id) ->
