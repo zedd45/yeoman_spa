@@ -4,7 +4,7 @@ class SamsClubSpa.Routers.Github extends Backbone.Router
     routes:
         '' : 'landing'
         "search/:query": 'searchResutlsPage'
-        'user/:id': 'userDetails'
+        'user/:username': 'userDetails'
 
     # execute: ->
         #  quick & dirty unbind... should track & destroy the existing view
@@ -22,8 +22,17 @@ class SamsClubSpa.Routers.Github extends Backbone.Router
         SamsClubSpa.contentDiv.empty().html view.el
 
 
-    userDetails: (id) ->
+    userDetails: (username) ->
         debugger
+        userModel = new SamsClubSpa.Models.User username
+        view = new SamsClubSpa.Views.UserDetails
+            model: userModel
+
+        SamsClubSpa.contentDiv.empty().html view.el
+
+        userModel.fetch()
+
+
 
 
 
