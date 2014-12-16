@@ -1,8 +1,8 @@
 'use strict';
 
-class SamsClubSpa.Views.SRP extends Backbone.View
+class SamsClubSpa.Views.Landing extends Backbone.View
 
-  template: JST['app/scripts/templates/SRP.ejs']
+  template: JST['app/scripts/templates/landing.ejs']
 
   tagName: 'div'
 

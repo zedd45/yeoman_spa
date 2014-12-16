@@ -6,19 +6,16 @@ class SamsClubSpa.Routers.Github extends Backbone.Router
         "search/:query": 'searchResutlsPage'
         'user/:id': 'userDetails'
 
-    landing: ->
-        target = SamsClubSpa.contentDiv
-        view = new SamsClubSpa.Views.SRP(
-            model: new SamsClubSpa.Models.User
-        )
-
-        #  quick & dirty unbind... should destroy the existing view
+    # execute: ->
+        #  quick & dirty unbind... should track & destroy the existing view
         #  to avoid memory leaks
-        target.empty()
-        SamsClubSpa.contentDiv.html view.render()
+        # SamsClubSpa.contentDiv.empty()
+
+    landing: ->
+        SamsClubSpa.contentDiv.empty().html new SamsClubSpa.Views.Landing().render()
 
     searchResutlsPage: (query) ->
-        debugger
+        # SamsClubSpa.contentDiv.empty().html news SamsClubSpa.Views.SRP().render()
 
 
     userDetails: (id) ->
