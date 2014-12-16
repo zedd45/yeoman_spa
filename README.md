@@ -1,5 +1,9 @@
 # Sam's Club SPA Code Challenge
 
+## Instructions to build the app
+
+        npm install && bower install && grunt build
+
 ## Instructions to start and run the app
 
         cd dist
