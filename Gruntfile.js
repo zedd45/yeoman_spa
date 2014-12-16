@@ -59,6 +59,12 @@ module.exports = function (grunt) {
                 ],
                 tasks: ['jst']
             },
+            less: {
+                files: [
+                    '<%= yeoman.app %>/styles/main.less'
+                ],
+                tasks: ['less:dev']
+            },
             test: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
                 tasks: ['test:true']
@@ -187,6 +193,31 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        less: {
+            options: {
+                // expose bootstrap's less so we can use mixins etc
+                paths: "<%= yeoman.app %>/bower_components/bootstrap/less",
+                ieCompat: true,
+                sourceMap: true,
+            },
+
+            dev: {
+                files: {
+                    '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.less',
+                }
+            },
+
+            dist: {
+                files: {
+                    '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.less',
+                },
+
+                options: {
+                    cleancss: true,
+                    report: 'min'
+                }
+            }
+        },
         cssmin: {
             dist: {
                 files: {
@@ -229,6 +260,7 @@ module.exports = function (grunt) {
                         '*.{ico,txt}',
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
+                        'bower_components/bootstrap/fonts/*.*'
                     ]
                 }, {
                     src: 'node_modules/apache-server-configs/dist/.htaccess',
@@ -251,6 +283,7 @@ module.exports = function (grunt) {
                         '<%= yeoman.dist %>/styles/{,*/}*.css',
                         '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                         '/styles/fonts/{,*/}*.*',
+                        'bower_components/bootstrap/fonts/*.*'
                     ]
                 }
             }
@@ -286,6 +319,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'coffee:dist',
+            'less:dist',
             'createDefaultTemplate',
             'jst',
             'connect:livereload',
@@ -301,6 +335,7 @@ module.exports = function (grunt) {
                 'coffee',
                 'createDefaultTemplate',
                 'jst',
+                'less:dev',
                 'connect:test',
                 'mocha',
             ];
@@ -319,6 +354,7 @@ module.exports = function (grunt) {
         'coffee',
         'createDefaultTemplate',
         'jst',
+        'less:dist',
         'useminPrepare',
         'imagemin',
         'htmlmin',
