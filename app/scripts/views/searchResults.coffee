@@ -11,7 +11,7 @@ class SamsClubSpa.Views.SearchResults extends Backbone.View
     query: ""
 
   initialize: (options) ->
-    @options = _.defaults( options, @defaults() )
+    @options = _.defaults( options || {}, @defaults() )
 
     @listenTo( @collection, "reset sync", @.render)
     # @.listenTo( @.collection, "add", @.addSomething)
@@ -30,7 +30,7 @@ class SamsClubSpa.Views.SearchResults extends Backbone.View
     @collection.each ( model ) ->
         $(fragment).append new SamsClubSpa.Views.User(
             model: model
-            className: "col-md-6 col-lg-3"
+            className: "col-md-6 col-lg-3 well"
         ).render()
 
     @$el.html fragment
