@@ -2,20 +2,18 @@
 
 class SamsClubSpa.Views.SearchResults extends Backbone.View
 
-  # TODO: this should add a loading indicator and remove it after the data has been retrieved / rendered
-  # className: "loading"
-  className: "row"
+  className: "row loading"
+
+  events:
+    "click [data-target=start]": "startOver"
 
   # a function will cause this to be re-evaluated for every instance
   defaults: ->
     query: ""
 
   initialize: (options) ->
-    @options = _.defaults( options || {}, @defaults() )
-
-    @listenTo( @collection, "reset sync", @.render)
-    # @.listenTo( @.collection, "add", @.addSomething)
-    # @.listenTo( @.collection, "remove", @.removeSomethingSomethingDarkSide)
+    @options = _.defaults options || {}, @defaults()
+    @listenTo( @collection, "reset sync", @render)
 
     fetchOptions =
         data: $.param( q: @options.query )
@@ -24,7 +22,7 @@ class SamsClubSpa.Views.SearchResults extends Backbone.View
 
     return @
 
-  render: () ->
+  render: ->
     #  this constructor won't work in IE!
     fragment = new DocumentFragment()
     @collection.each ( model ) ->
@@ -33,4 +31,16 @@ class SamsClubSpa.Views.SearchResults extends Backbone.View
             className: "col-md-6 col-lg-3 well"
         ).render()
 
-    @$el.html fragment
+    if @collection.length
+        @$el.html fragment
+    else
+        @renderNoResults()
+
+  renderNoResults: ->
+    noResultsTemplate = JST['app/scripts/templates/noResults.ejs']
+    @$el.html noResultsTemplate query: @options.query
+
+
+  startOver: (e) ->
+    e.preventDefault()
+    SamsClubSpa.router.navigate "", trigger: true
