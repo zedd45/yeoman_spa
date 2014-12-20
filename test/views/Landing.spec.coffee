@@ -7,6 +7,6 @@ describe 'SRP View', ->
 
   it "should 'submit' the search string on enter", ->
     searchInput = @SRPView.$("input")
-    searchInput.val("test")
-    @SRPView.$("button.go").trigger("click")
+    searchInput.val "test"
+    @SRPView.$("button.go").trigger "click"
     expect( @SRPView.search ).toHaveBeenCalled()

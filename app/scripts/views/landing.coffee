@@ -14,7 +14,7 @@ class SamsClubSpa.Views.Landing extends Backbone.View
 
 
   initialize: ->
-    _.bind( @search, @)
+    _.bind @search, @
     return @
 
   render: ->

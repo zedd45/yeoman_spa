@@ -94,6 +94,7 @@ module.exports = function (grunt) {
                         return [
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
+                            mountFolder(connect, 'app/bower_components'),
                             mountFolder(connect, 'test'),
                             mountFolder(connect, yeomanConfig.app)
                         ];
