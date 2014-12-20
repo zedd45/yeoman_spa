@@ -23,7 +23,6 @@ class SamsClubSpa.Routers.Github extends Backbone.Router
 
 
     userDetails: (username) ->
-        debugger
         userModel = new SamsClubSpa.Models.User username
         view = new SamsClubSpa.Views.UserDetails
             model: userModel
