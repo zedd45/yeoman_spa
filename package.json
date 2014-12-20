@@ -1,6 +1,6 @@
 {
   "name": "samsclubspa",
-  "version": "0.0.0",
+  "version": "0.2.1",
   "dependencies": {
     "grunt-contrib-less": "^0.12.0"
   },
