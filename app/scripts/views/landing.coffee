@@ -14,7 +14,7 @@ class SamsClubSpa.Views.Landing extends Backbone.View
 
 
   initialize: ->
-    _.bind( @.search, @)
+    _.bind( @search, @)
     return @
 
   render: ->
@@ -29,6 +29,6 @@ class SamsClubSpa.Views.Landing extends Backbone.View
 
   search: ->
     # TODO: return "clean" version
-    # searchString = @.$("input[type=search]").val().replace(/[&<>"'\/]/gm, "")
-    searchString = @.$("input[type=search]").val()
-    SamsClubSpa.router.navigate("search/" + searchString)
+    # searchString = @$("input[type=search]").val().replace(/[&<>"'\/]/gm, "")
+    searchString = @$("input[type=search]").val()
+    SamsClubSpa.router.navigate "search/" + searchString, trigger: true
