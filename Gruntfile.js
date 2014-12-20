@@ -156,8 +156,11 @@ module.exports = function (grunt) {
             },
             test: {
                 files: [{
+                    // rather than compiling multiple files here you should
+                    // require them into your main .coffee file
+                    // Sadly, the generator didn't set this up :(
                     expand: true,
-                    cwd: 'test/spec',
+                    cwd: 'test',
                     src: '{,*/}*.coffee',
                     dest: '.tmp/spec',
                     ext: '.js'
